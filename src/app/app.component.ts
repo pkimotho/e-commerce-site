@@ -19,7 +19,11 @@ export class AppComponent implements OnDestroy {
         this.userService.save(user);
 
         const returnUrl = localStorage.getItem('returnUrl');
-        this.router.navigateByUrl(returnUrl);
+
+        if (returnUrl) {
+          localStorage.removeItem('returnUrl');
+          this.router.navigateByUrl(returnUrl);
+        }
       }
     })
   }
