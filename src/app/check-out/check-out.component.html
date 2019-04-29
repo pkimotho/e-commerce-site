@@ -1,3 +1,36 @@
-<p>
-  check-out works!
-</p>
+<div class="row">
+
+    <div class="col-md-6">
+        <h2>Shipping</h2>
+        <form #dataForm="ngForm" (ngSubmit)="placeOrder()">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input #name="ngModel" [(ngModel)]="shipping.name" name="name" type="text" class="form-control" id="name" required>
+                <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+                    Name is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <div class="input-group">
+                    <input #address="ngModel" [(ngModel)]="shipping.address1" name="address" type="text" class="form-control" id="address" required>
+                </div><br>
+                <div class="input-group">
+                    <input #address="ngModel" [(ngModel)]="shipping.address2" name="address2" type="text" class="form-control" id="address2" required>
+                </div>
+                <div class="alert alert-danger" *ngIf="address.touched && address.invalid">
+                    <div *ngIf="address.errors.required">Address is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input #city="ngModel" [(ngModel)]="shipping.city" type="text" name="city" class="form-control" id="city" required>
+                <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
+                    City is required.
+                </div>
+            </div>
+            <button class="btn btn-primary">Place Order</button>
+        </form><br>
+        <a *ngIf="success" class="btn btn-success">{{success}}</a>
+    </div>
+</div>
